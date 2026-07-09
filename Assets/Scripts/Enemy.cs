@@ -1,3 +1,4 @@
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -6,21 +7,44 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Settings")]
     [SerializeField] private float speed = 3f;
     
+    
+
+    [Header("Health")]
+    [SerializeField] private int maxHealth = 3;
+
+    private int currentHealth;
+    [SerializeField] private Slider healthBar;
     private Transform player;
+    
     
     void Start()
     {
+        currentHealth = maxHealth;
+        
+        healthBar.maxValue = maxHealth;
+        healthBar.value = currentHealth;
+
+        
         // Buscar al jugador
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         
         if (playerObject != null)
+    {
+        player = playerObject.transform;
+    }
+    }
+
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.value = currentHealth;
+
+    if(currentHealth <= 0)
         {
-            player = playerObject.transform;
+            Destroy(gameObject);
         }
-        else
-        {
-            Debug.LogError("No encontré al jugador. Ponle el Tag 'Player'");
-        }
+
     }
     
     void Update()
@@ -65,13 +89,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        // Ahora cuando se choca con un proyectil
-        if(other.CompareTag("Projectile"))
-        {
-            Destroy(gameObject);
-            Destroy (other.gameObject);
-
-        }
+       
         
     }
 

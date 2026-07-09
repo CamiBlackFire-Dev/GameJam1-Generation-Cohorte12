@@ -8,20 +8,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float turnSpeed = 10f;
 
-    [Header ("Shoot")]
-    
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float shootColdown = 0.5f;
-    [SerializeField] private Transform shootPoint;
     [SerializeField] private Animator animator;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 7f;
+
+    
     private Rigidbody rb;
     private bool isGrounded = true;
     
     private Vector2 moveInput;
-    private float lastShoot;
     private float normalSpeed;
     private bool shield;
 
@@ -44,13 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
 
-        // Disparar con el click izquierdo
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Shoot();
-
-        // Salta con barra
-        }
         if(Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
         {
             Jump();
@@ -89,19 +78,6 @@ public class PlayerController : MonoBehaviour
     }
     }
     
-    private void Shoot()
-    {
-        // Verificar el cooldown del disparo
-        if (Time.time - lastShoot < shootColdown) 
-        return;
-            {
-            // Crear el proyectil
-            Instantiate(projectilePrefab, shootPoint.position, transform.rotation);
-
-            lastShoot = Time.time;
-
-            }
-    }
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();

@@ -53,10 +53,22 @@ public class VaritaAtaque : MonoBehaviour
     {
         Vector3 puntoFinalRayo = rayoDesdeCamara.GetPoint(distanciaAlSuelo);
 
+        // Se dibuja el rayo
         StopAllCoroutines(); 
         StartCoroutine(MostrarRayoTemporal(puntaVarita.position, puntoFinalRayo));
 
-        Debug.Log("¡Rayo Recto Disparado a la altura de la varita!");
+        // Se detecta si el rayo golpea al enemigo
+        RaycastHit hit; 
+
+    if(Physics.Raycast(rayoDesdeCamara, out hit, 100f))
+            {
+                Enemy enemy = hit.collider.GetComponent<Enemy>();
+                if(enemy != null)
+                {
+                    enemy.TakeDamage(1);
+                }
+            }
+
     }
 }
 
