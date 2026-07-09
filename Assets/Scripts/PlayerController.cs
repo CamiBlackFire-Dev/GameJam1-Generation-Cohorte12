@@ -13,10 +13,30 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float shootColdown = 0.5f;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private Animator animator;
+
+    [Header("Jump")]
+    [SerializeField] private float jumpForce = 7f;
+    private Rigidbody rb;
+    private bool isGrounded = true;
     
     private Vector2 moveInput;
     private float lastShoot;
-    
+
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Jump()
+    {
+        isGrounded = false;
+        animator.SetTrigger("Jump");
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
     void Update()
     {
         HandleMovement();
@@ -26,7 +46,10 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
-        
+        if(Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
+        {
+            Jump();
+        }
        
     void HandleMovement()
     {
@@ -45,6 +68,9 @@ public class PlayerController : MonoBehaviour
         {
             movement = movement.normalized;
         }
+
+        // Animacion del personaje
+        animator.SetFloat("Speed", movement.magnitude);
         
         // Mover al jugador
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
@@ -61,7 +87,8 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         // Verificar el cooldown del disparo
-        if (Time.time - lastShoot < shootColdown) return;
+        if (Time.time - lastShoot < shootColdown) 
+        return;
             {
             // Crear el proyectil
             Instantiate(projectilePrefab, shootPoint.position, transform.rotation);
@@ -69,12 +96,19 @@ public class PlayerController : MonoBehaviour
             lastShoot = Time.time;
 
             }
-
-
-
     }
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+
+
     }
 }
