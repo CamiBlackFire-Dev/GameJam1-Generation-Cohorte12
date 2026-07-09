@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    [Header("Enemy Settings")]
     [SerializeField] private float speed = 3f;
     
     private Transform player;
@@ -39,13 +41,24 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    // Detectar colisión con Box Collider
-    void OnCollisionEnter(Collision collision)
+    // Se realiza el cambio para verificar si el enemigo choca nuevamente con el player
+    void OnTriggerEnter(Collider other) 
+    
     {
-        if (collision.gameObject.CompareTag("Player"))
+        // Aca inicia si choca al jugador
+        if(other.CompareTag("Player"))
         {
-            Debug.Log("¡El enemigo chocó con el jugador!");
-            // Aquí puedes poner: Destroy(gameObject) o lo que quieras
+            Destroy(gameObject);
         }
+
+        // Ahora cuando se choca con un proyectil
+        if(other.CompareTag("Projectile"))
+        {
+            Destroy(gameObject);
+            Destroy (other.gameObject);
+
+        }
+        
     }
+
 }

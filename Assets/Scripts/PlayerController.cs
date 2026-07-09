@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
 
         // Disparar con la barra espaciadora
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Shoot();
         }
