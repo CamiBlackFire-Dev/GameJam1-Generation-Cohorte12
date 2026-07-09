@@ -1,4 +1,4 @@
-using UnityEditor.IMGUI.Controls;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,10 +41,12 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
 
-        // Disparar con la barra espaciadora
+        // Disparar con el click izquierdo
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Shoot();
+
+        // Salta con barra
         }
         if(Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
         {
