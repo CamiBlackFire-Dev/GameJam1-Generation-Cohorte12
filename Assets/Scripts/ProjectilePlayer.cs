@@ -7,7 +7,7 @@ public class ProjectilePlayer : MonoBehaviour
 {
     [Header("Projectile Player Settings")]
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float maxLifeTime = 2f;
+    [SerializeField] private float maxLifeTime = 4f;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
