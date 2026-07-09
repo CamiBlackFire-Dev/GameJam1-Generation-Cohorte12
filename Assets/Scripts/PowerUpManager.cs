@@ -20,7 +20,7 @@ public class PowerUpManager : MonoBehaviour
     // Update is called once per frame
     void SpawnPowerUp()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(-rangeX, rangeX), 0.5f, Random.Range(-rangeZ, rangeZ));
+        Vector3 randomPosition = new Vector3(Random.Range(-rangeX, rangeX) -23.27f, 0.5f, Random.Range(-rangeZ, rangeZ));
 
     int randomPowerUp = Random.Range(0,2);
 
