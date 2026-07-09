@@ -22,10 +22,13 @@ public class PlayerController : MonoBehaviour
     
     private Vector2 moveInput;
     private float lastShoot;
+    private float normalSpeed;
+    private bool shield;
 
 
     void Start()
     {
+        normalSpeed = speed;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
@@ -111,4 +114,36 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    public void ActivateSpeed(float extraSpeed, float time)
+    {
+        speed = normalSpeed + extraSpeed;
+        Invoke("ResetSpeed", time);
+
+    }
+
+    void ResetSpeed()
+    {
+        speed = normalSpeed;  
+    }
+
+    public void ActivateShield(float time)
+    {
+        shield = true;
+        Invoke("DisableShield", time);
+
+    }
+    void DisableShield()
+    {
+
+        shield = false;
+    
+    }
+
+    public bool HasShield()
+    {
+
+        return shield;
+    
+    }
+
 }

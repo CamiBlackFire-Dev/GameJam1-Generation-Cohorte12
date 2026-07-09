@@ -68,9 +68,9 @@ public class SpawnManager : MonoBehaviour
     {
         for(int i = 0; i< enemiesWave; i++)
         {
-            Vector3 spawnPosition = portal.position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+            Vector3 spawnPosition = portal.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
 
-            Instantiate(enemyPrefab, spawnPosition, transform.rotation);
+            Instantiate(enemyPrefab, spawnPosition, Quaternion.Euler(0, 0, 0));
         }
     }
 

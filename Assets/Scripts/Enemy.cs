@@ -36,8 +36,9 @@ public class Enemy : MonoBehaviour
         
         // Mirar hacia el jugador
         if (direction != Vector3.zero)
-        {
-            transform.LookAt(player);
+        {   
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = targetRotation * Quaternion.Euler(-90, 0f, 0f);
         }
     }
     
@@ -48,7 +49,20 @@ public class Enemy : MonoBehaviour
         // Aca inicia si choca al jugador
         if(other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            PlayerController player = other.GetComponent<PlayerController>();
+
+            if(player.HasShield())
+            {
+                Destroy(gameObject);
+
+            }
+
+        else
+            {
+             // Aqui le quitamos vida al jugador cuando este en la escena
+             Destroy(gameObject);
+
+            }
         }
 
         // Ahora cuando se choca con un proyectil
