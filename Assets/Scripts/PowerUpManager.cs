@@ -20,17 +20,17 @@ public class PowerUpManager : MonoBehaviour
     // Update is called once per frame
     void SpawnPowerUp()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(-rangeX, rangeX) -23.27f, 0.5f, Random.Range(-rangeZ, rangeZ));
+        Vector3 randomPosition = new Vector3(Random.Range(-rangeX, rangeX) -23.27f, 0.9f, Random.Range(-rangeZ, rangeZ));
 
     int randomPowerUp = Random.Range(0,2);
 
     if(randomPowerUp == 0)
         {
-            Instantiate(mushroomPrefab, randomPosition, Quaternion.identity);
+            Instantiate(mushroomPrefab, randomPosition, Quaternion.Euler(-90, 0, 0));
         }
     else
         {
-            Instantiate(shieldPotionPrefab, randomPosition, Quaternion.identity);
+            Instantiate(shieldPotionPrefab, randomPosition, Quaternion.Euler(-90, 0, 0));
         }
         
     }
