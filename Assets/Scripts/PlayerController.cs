@@ -7,11 +7,12 @@ public class PlayerController : MonoBehaviour
     [Header ("Movement")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float turnSpeed = 10f;
-
+    
     [SerializeField] private Animator animator;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 7f;
+    
 
     
     private Rigidbody rb;
@@ -126,10 +127,9 @@ public class PlayerController : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            Destroy(gameObject);
-
+        Destroy(gameObject);
         }
-    }
+     }
 
     void ResetSpeed()
     {
