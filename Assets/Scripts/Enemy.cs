@@ -83,14 +83,16 @@ public class Enemy : MonoBehaviour
 
         else
             {
-             // Aqui le quitamos vida al jugador cuando este en la escena
+             
+             player.TakeDamage(1);
              Destroy(gameObject);
 
             }
         }
-
-       
-        
     }
 
+    
+
+
 }
+

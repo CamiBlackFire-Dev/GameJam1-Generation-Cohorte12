@@ -1,4 +1,4 @@
-
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,10 +20,18 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private float normalSpeed;
     private bool shield;
+    public Slider healthBar;
+    public int maxHealth = 5;
+    private int currentHealth;
 
 
     void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = currentHealth;
+
+
         normalSpeed = speed;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -99,6 +107,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void TakeDamage(int damage)
+    {
+        if(shield)
+        {
+            return;
+        }
+
+        currentHealth -= damage;
+
+        if(currentHealth < 0)
+        {
+            currentHealth = 0;
+
+        }
+
+        healthBar.value = currentHealth;
+
+        if(currentHealth <= 0)
+        {
+            Destroy(gameObject);
+
+        }
+    }
+
     void ResetSpeed()
     {
         speed = normalSpeed;  
@@ -123,5 +155,7 @@ public class PlayerController : MonoBehaviour
         return shield;
     
     }
+
+
 
 }
