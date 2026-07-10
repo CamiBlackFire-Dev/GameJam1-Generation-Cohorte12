@@ -7,12 +7,15 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        AudioManager.Instance.PlayMenuMusic();
     }
 
     
     public void PlayGame()
     {
+        AudioManager.Instance.PlayGameplayMusic();
         SceneManager.LoadScene(1);
+        
     }
 
     

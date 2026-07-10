@@ -108,6 +108,8 @@ public class BossController : MonoBehaviour
 
         // 2. Mostramos el mensaje en pantalla
         if (textoGanaste != null) textoGanaste.SetActive(true);
+        
+        AudioManager.Instance.PauseMusic();
 
         // 3. CONGELAMOS EL JUEGO (Físicas, movimientos, proyectiles)
         Time.timeScale = 0f;

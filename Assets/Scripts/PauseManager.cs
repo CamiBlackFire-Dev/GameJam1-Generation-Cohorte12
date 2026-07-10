@@ -50,6 +50,8 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
         pausePanel.SetActive(true);
 
+        AudioManager.Instance.PauseMusic();
+
         // Desactivamos el PlayerInput para que el jugador no se mueva
         if (playerInput != null)
             playerInput.enabled = false;
@@ -66,6 +68,8 @@ public class PauseManager : MonoBehaviour
     Time.timeScale = 1f;
     pausePanel.SetActive(false);
 
+    AudioManager.Instance.ResumeMusic();
+
     if (playerInput != null)
         playerInput.enabled = true;
 
@@ -81,7 +85,6 @@ public class PauseManager : MonoBehaviour
     public void GoToMenu()
     {
     Time.timeScale = 1f;
-
     if (playerInput != null)
         playerInput.enabled = true;
 
