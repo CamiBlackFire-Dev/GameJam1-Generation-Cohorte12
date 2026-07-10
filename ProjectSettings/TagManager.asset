@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - Projectile
   - Proyectile
+  - CalderoBola
+  - Boss
+  - Pociones
   layers:
   - Default
   - TransparentFX
