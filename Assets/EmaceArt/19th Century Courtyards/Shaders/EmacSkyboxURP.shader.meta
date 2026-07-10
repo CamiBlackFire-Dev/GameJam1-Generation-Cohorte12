@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ebae29a223e366b4eaa1346748f16be4
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 167010
+  packageName: "Slavic Medieval Village Free \u2013 Modular Environment Kit"
+  packageVersion: 1.7
+  assetPath: Assets/EmaceArt/19th Century Courtyards/Shaders/EmacSkyboxURP.shader
+  uploadId: 924784
